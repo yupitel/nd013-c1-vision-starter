@@ -146,7 +146,42 @@ This section should contain a brief description of the project and what we are t
 ### Set up
 This section should contain a brief description of the steps to follow to run the code for this repository.
 
+* before start
+   * Install Nvidia Geforece Experience for driver
+   * Docker desktop
+   * WSL2 setup to use ubuntu on windows11
+* build
+```
+docker build -t c1-vision-starter -f Dockerfile .
+```
+* run
+```
+docker run --gpus all -v {absolute-path}:/app/project/ --network=host -ti c1-vision-starter bash
+```
+* gcloud setup
+   * gcloud auth login
+   * copy command on terminal
+   * copy output in container terminal
+
 ### Dataset
+#### Before start
+download_process.py doesn't work at 2022/07/10 for change of keras library.  
+For this change, I applied the change of Dockerfile as followings  
+```
+RUN git clone https://github.com/tensorflow/models.git && \
+    cd /app/models/research/ && \
+    git checkout e5e8bf3c3753d50230f567452d4dbf49951d9c40 && \
+    protoc object_detection/protos/*.proto --python_out=. && \
+    cp object_detection/packages/tf2/setup.py . && \
+    python -m pip install .
+```
+
+execute download process
+```
+python download_process.py --data_dir ./data
+```
+
+
 #### Dataset analysis
 This section should contain a quantitative and qualitative description of the dataset. It should include images, charts and other visualizations.
 #### Cross validation
