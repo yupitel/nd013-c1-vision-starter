@@ -181,6 +181,13 @@ execute download process
 python download_process.py --data_dir ./data
 ```
 
+downgrade numpy version  
+Current docker image include numpy version 1.19.5 and if execute evaluation process, following error has occured.
+```
+TypeError: 'numpy.float64' object cannot be interpreted as an integer
+```
+To fix this error, downgrade numpy version from 1.19.5 to 1.17.5
+ 
 
 #### Dataset analysis
 This section should contain a quantitative and qualitative description of the dataset. It should include images, charts and other visualizations.
