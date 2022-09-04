@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build: ./build/
+    working_dir: /app
+    tty: true
+    volumes:
+      - ./:/app/project/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+
