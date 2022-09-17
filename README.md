@@ -191,8 +191,22 @@ To fix this error, downgrade numpy version from 1.19.5 to 1.17.5
 
 #### Dataset analysis
 This section should contain a quantitative and qualitative description of the dataset. It should include images, charts and other visualizations.
+
+Tataset analysis results are included in the following jupyter notebook files.
+* Exploratory Data Analysis
+  - In this, I learn the usage of tfrecord and write bounding boxes in the image. After that, I try to calculate the number of the detection data in files.
+* Explore augmentations
+  - In this, add new config option and execute file. the result is in the jupyter notebook file.
+
 #### Cross validation
 This section should detail the cross validation strategy and justify your approach.
+
+For cross validation, I shuffle data randomly and divide data as followings.
+* split files
+  * (train and val) : test = 8 : 2
+  * train : test = 8 : 2
+
+
 
 ### Training
 #### Reference experiment
@@ -200,3 +214,10 @@ This section should detail the results of the reference experiment. It should in
 
 #### Improve on the reference
 This section should highlight the different strategies you adopted to improve your model. It should contain relevant figures and details of your findings.
+
+I use two parameter set for this. The results are stored in the results directory.  
+Experiments01 is default setting.  
+Experiments02 use data_augmentation_options for random_rgb_to_gray function.
+
+The results are almost same. It may occured for the lack of data set.  
+If the size of data become more big, there are much more difference in it.
