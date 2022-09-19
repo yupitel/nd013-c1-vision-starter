@@ -207,30 +207,64 @@ This section should detail the results of the reference experiment. It should in
 #### Improve on the reference
 This section should highlight the different strategies you adopted to improve your model. It should contain relevant figures and details of your findings.
 
-The reuslts are stored in the following directory.  
- |-results
-    |- experiments01
-    |- experiments02
-    |- experiments03
+I tried 4 type of trainings.  
 
-In this directory, config file and tensorboard images are stored.  
+* experiments01
+  * default setting(Steps 25000, warm up steps 2000)
+* experiments02
+  * experiments01 setting + random_rgb_to_gray option for argumentation  
+* experiments03
+  * change Steps as followings. steps 2500, warm up steps 200  
+* experiments04
+  * experiments02 setting + random_rgb_to_gray option for argumentation  
+
+The results are as followings.
+(Image and data is stored in the results folder)
 
 
-I use two parameter set for this. The results are stored in the results directory.  
-Experiments01 is default setting.  
-Experiments02 use data_augmentation_options for random_rgb_to_gray function.
+Experiments01:  
+![detectionbox_precision](/results/experiments01/detectionbox_precision.png)  
+![detectionbox_recall](/results/experiments01/detectionbox_recall.png)  
+![loss_learningrate](/results/experiments01/loss_learningrate.png)  
+![stepspersec](/results/experiments01/stepspersec.png)  
 
-The results are almost same. It may occured for the lack of data set.  
-If the size of data become more big, there are much more difference in it.
+Experiments02:  
+![detectionbox_precision](/results/experiments02/detectionbox_precision.png)  
+![detectionbox_recall](/results/experiments02/detectionbox_recall.png)  
+![loss_learningrate](/results/experiments02/loss_learningrate.png)  
+![stepspersec](/results/experiments02/stepspersec.png)  
 
-Update after first review.  
+Experiments03:  
+![detectionbox_precision](/results/experiments03/detectionbox_precision.png)  
+![detectionbox_recall](/results/experiments03/detectionbox_recall.png)  
+![loss_learningrate](/results/experiments03/loss_learningrate.png)  
+![stepspersec](/results/experiments03/stepspersec.png)  
 
-At experiments01 and 02, the results (tensorboard image is in the results directory) are almost same and precision results is very low.  
-So the results is over fitting and learning steps is too enough for this small dataset.
+Experiments04:  
+![detectionbox_precision](/results/experiments04/detectionbox_precision.png)  
+![detectionbox_recall](/results/experiments04/detectionbox_recall.png)  
+![loss_learningrate](/results/experiments04/loss_learningrate.png)  
+![stepspersec](/results/experiments04/stepspersec.png)  
 
-So I execute additional training. The results is stored in the experiments03.  
-In this training, I change steps 24000 to 2400.
-The detection results seems to be almost same, but the result of loss is bigger than that of 24000 steps one.  
-I think this result show the steps 2400 not enough to learn, but if the steps over 24000 steps, the result become over fitting.  
+
+* Detection box precision and recall.
+  * When I compare these results on the tensorboard, the results seemed as followings.
+    * Better : Experiments04 > Experiments03 > Experiments02 > Experiments01 : Worse 
+  * I think when I increase the number of steps, the results become better.
+  * But in this results, lower step experiments(2500) is better than that of 25000 steps.
+  * In this case, the data is only 100 images. So I think over fitting is occured in the 01 and 02 case.
+  * 02 is better than 01. I think it is depends on the gray scale augumentation. In this process, data set become bigger. So the effect of over fitting become lower.
+  * After these experiments, I think proper learning steps are needed for the number of dataset.
+
+
+* Loss
+  * When I compare these results on the tensorboard, the results seemed as followings.
+    * Better : Experiments02 > Experiments01 > Experiments04 > Experiments03 : Worse
+    * Experiments01 and 02 have only few loss after this training.
+    * It seems good result, but with the precition and recall result, this is occured for over fitting in the training.  
+
+
+
+I think these results show the steps 2400 not enough to learn, but if the steps over 24000 steps, the result become over fitting.  
 To avoid over fitting, I need to use much more data for training, but if I use much more data, I need much more computer resource and time.  
 So in this study, I just finish this tutorial with this results.
