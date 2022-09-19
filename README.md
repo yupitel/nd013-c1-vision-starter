@@ -261,7 +261,7 @@ Experiments04:
   * When I compare these results on the tensorboard, the results seemed as followings.
     * Better : Experiments02 > Experiments01 > Experiments04 > Experiments03 : Worse
     * Experiments01 and 02 have only few loss after this training.
-    * It seems good result, but with the precition and recall result, this is occured for over fitting in the training.  
+    * It seems good result, but with the precision and recall result, this is occured for over fitting in the training.  
 
 
 
