@@ -200,7 +200,6 @@ For cross validation, I shuffle data randomly and divide data as followings.
   * train : test = 8 : 2
 
 
-
 ### Training
 #### Reference experiment
 This section should detail the results of the reference experiment. It should includes training metrics and a detailed explanation of the algorithm's performances.
@@ -214,3 +213,15 @@ Experiments02 use data_augmentation_options for random_rgb_to_gray function.
 
 The results are almost same. It may occured for the lack of data set.  
 If the size of data become more big, there are much more difference in it.
+
+Update after first review.  
+
+At experiments01 and 02, the results (tensorboard image is in the results directory) are almost same and precision results is very low.  
+So the results is over fitting and learning steps is too enough for this small dataset.
+
+So I execute additional training. The results is stored in the experiments03.  
+In this training, I change steps 24000 to 2400.
+The detection results seems to be almost same, but the result of loss is bigger than that of 24000 steps one.  
+I think this result show the steps 2400 not enough to learn, but if the steps over 24000 steps, the result become over fitting.  
+To avoid over fitting, I need to use much more data for training, but if I use much more data, I need much more computer resource and time.  
+So in this study, I just finish this tutorial with this results.
