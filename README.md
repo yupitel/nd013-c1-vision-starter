@@ -207,6 +207,15 @@ This section should detail the results of the reference experiment. It should in
 #### Improve on the reference
 This section should highlight the different strategies you adopted to improve your model. It should contain relevant figures and details of your findings.
 
+The reuslts are stored in the following directory.  
+ |-results
+    |- experiments01
+    |- experiments02
+    |- experiments03
+
+In this directory, config file and tensorboard images are stored.  
+
+
 I use two parameter set for this. The results are stored in the results directory.  
 Experiments01 is default setting.  
 Experiments02 use data_augmentation_options for random_rgb_to_gray function.
